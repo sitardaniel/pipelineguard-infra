@@ -1,0 +1,45 @@
+# Terraform state — NEVER commit
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+*.auto.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Terragrunt cache
+.terragrunt-cache/
+
+# Secrets & credentials — NEVER commit
+.env
+.env.*
+*.env
+!.env.example
+secrets/
+*.pem
+*.key
+*.p12
+credentials
+aws-credentials
+
+# Checkov / scanner outputs
+.checkov/
+checkov-report*
+*.sarif
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Crash logs
+crash.log
+crash.*.log
