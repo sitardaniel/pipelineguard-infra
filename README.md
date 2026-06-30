@@ -1,4 +1,4 @@
-# 🛡️ PipelineGuard — Infrastructure
+# 🛡️ PipelineGuard - Infrastructure
 
 > Terraform + Terragrunt configuration for PipelineGuard's AWS infrastructure. Spun up on-demand for demos, torn down immediately after to minimize cost.
 
@@ -127,6 +127,6 @@ terraform init && terraform apply
 - State files are encrypted at rest in S3
 - DynamoDB table prevents concurrent state modifications
 - IAM roles follow least-privilege principle
-- No AWS credentials are stored in this repo — use AWS CLI profiles or IAM roles
+- No AWS credentials are stored in this repo - use AWS CLI profiles or IAM roles
 
 See [SECURITY.md](SECURITY.md) for the full policy.

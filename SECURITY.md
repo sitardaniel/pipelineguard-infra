@@ -31,14 +31,14 @@ Response timeline:
 
 ## Infrastructure Security Practices
 
-- **No credentials in Git** — AWS credentials are never stored in this repo; use IAM roles or AWS CLI profiles
-- **Encrypted state** — Terraform state is encrypted at rest in S3 with server-side encryption
-- **State locking** — DynamoDB prevents concurrent modifications
-- **IaC scanning** — All Terraform files are scanned by Checkov (PipelineGuard scans itself)
-- **Least privilege IAM** — All IAM roles follow minimum required permissions
-- **Private networking** — EKS nodes run in private subnets; no direct public exposure
-- **Branch protection** — `main` requires PR review; no direct pushes
-- **Secrets scanning** — GitHub secret scanning and push protection are active
+- **No credentials in Git** - AWS credentials are never stored in this repo; use IAM roles or AWS CLI profiles
+- **Encrypted state** - Terraform state is encrypted at rest in S3 with server-side encryption
+- **State locking** - DynamoDB prevents concurrent modifications
+- **IaC scanning** - All Terraform files are scanned by Checkov (PipelineGuard scans itself)
+- **Least privilege IAM** - All IAM roles follow minimum required permissions
+- **Private networking** - EKS nodes run in private subnets; no direct public exposure
+- **Branch protection** - `main` requires PR review; no direct pushes
+- **Secrets scanning** - GitHub secret scanning and push protection are active
 
 ---
 

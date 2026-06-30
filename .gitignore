@@ -1,4 +1,4 @@
-# Terraform state — NEVER commit
+# Terraform state - NEVER commit
 *.tfstate
 *.tfstate.*
 *.tfstate.backup
@@ -14,7 +14,7 @@ override.tf.json
 # Terragrunt cache
 .terragrunt-cache/
 
-# Secrets & credentials — NEVER commit
+# Secrets & credentials - NEVER commit
 .env
 .env.*
 *.env
