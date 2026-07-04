@@ -14,6 +14,11 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "vpc_cidr" {
+  description = "CIDR block of the VPC, used to scope the RDS security group's egress"
+  type        = string
+}
+
 variable "subnet_ids" {
   description = "List of subnet IDs for RDS"
   type        = list(string)

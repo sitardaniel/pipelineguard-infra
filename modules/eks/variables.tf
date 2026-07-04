@@ -25,9 +25,26 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "vpc_cidr" {
+  description = "CIDR block of the VPC, used to scope the cluster security group's egress"
+  type        = string
+}
+
 variable "subnet_ids" {
   description = "List of subnet IDs for the EKS cluster"
   type        = list(string)
+}
+
+variable "endpoint_public_access" {
+  description = "Whether the EKS public API server endpoint is enabled. Keep disabled unless you need cluster access from outside the VPC."
+  type        = bool
+  default     = false
+}
+
+variable "public_access_cidrs" {
+  description = "CIDR blocks allowed to reach the public API server endpoint. Only applied when endpoint_public_access is true."
+  type        = list(string)
+  default     = []
 }
 
 variable "instance_types" {

@@ -13,6 +13,7 @@ dependency "vpc" {
 
   mock_outputs = {
     vpc_id             = "vpc-mock"
+    vpc_cidr           = "10.0.0.0/16"
     private_subnet_ids = ["subnet-mock-1", "subnet-mock-2", "subnet-mock-3"]
   }
 }
@@ -27,6 +28,7 @@ dependency "eks" {
 
 inputs = {
   vpc_id                  = dependency.vpc.outputs.vpc_id
+  vpc_cidr                = dependency.vpc.outputs.vpc_cidr
   subnet_ids              = dependency.vpc.outputs.private_subnet_ids
   allowed_security_groups = [dependency.eks.outputs.cluster_security_group_id]
 

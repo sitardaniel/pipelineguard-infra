@@ -13,6 +13,7 @@ dependency "vpc" {
 
   mock_outputs = {
     vpc_id             = "vpc-mock"
+    vpc_cidr           = "10.0.0.0/16"
     private_subnet_ids = ["subnet-mock-1", "subnet-mock-2", "subnet-mock-3"]
   }
 }
@@ -21,6 +22,7 @@ inputs = {
   cluster_name       = "pipelineguard-dev"
   kubernetes_version = "1.29"
   vpc_id             = dependency.vpc.outputs.vpc_id
+  vpc_cidr           = dependency.vpc.outputs.vpc_cidr
   subnet_ids         = dependency.vpc.outputs.private_subnet_ids
 
   # Dev settings - smaller, spot instances for cost savings

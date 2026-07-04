@@ -26,10 +26,11 @@ resource "aws_security_group" "rds" {
   }
 
   egress {
+    description = "Allow traffic within the VPC only - RDS never needs to reach the internet"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.vpc_cidr]
   }
 
   tags = {
@@ -57,10 +58,10 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name   = aws_db_subnet_group.main.name
   vpc_security_group_ids = [aws_security_group.rds.id]
 
-  multi_az               = var.multi_az
-  publicly_accessible    = false
-  skip_final_snapshot    = var.environment == "dev"
-  deletion_protection    = var.environment == "prod"
+  multi_az            = var.multi_az
+  publicly_accessible = false
+  skip_final_snapshot = var.environment == "dev"
+  deletion_protection = var.environment == "prod"
 
   backup_retention_period = var.environment == "prod" ? 7 : 1
   backup_window           = "03:00-04:00"

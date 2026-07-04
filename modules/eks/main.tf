@@ -38,7 +38,8 @@ resource "aws_eks_cluster" "main" {
   vpc_config {
     subnet_ids              = var.subnet_ids
     endpoint_private_access = true
-    endpoint_public_access  = true
+    endpoint_public_access  = var.endpoint_public_access
+    public_access_cidrs     = var.public_access_cidrs
     security_group_ids      = [aws_security_group.cluster.id]
   }
 
@@ -62,10 +63,11 @@ resource "aws_security_group" "cluster" {
   vpc_id      = var.vpc_id
 
   egress {
+    description = "Allow traffic within the VPC only (control plane to nodes/RDS)"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [var.vpc_cidr]
   }
 
   tags = {
