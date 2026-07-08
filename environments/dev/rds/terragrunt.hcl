@@ -18,11 +18,11 @@ dependency "vpc" {
   }
 }
 
-dependency "eks" {
-  config_path = "../eks"
+dependency "k3s" {
+  config_path = "../k3s"
 
   mock_outputs = {
-    cluster_security_group_id = "sg-mock"
+    node_security_group_id = "sg-mock"
   }
 }
 
@@ -30,7 +30,7 @@ inputs = {
   vpc_id                  = dependency.vpc.outputs.vpc_id
   vpc_cidr                = dependency.vpc.outputs.vpc_cidr
   subnet_ids              = dependency.vpc.outputs.private_subnet_ids
-  allowed_security_groups = [dependency.eks.outputs.cluster_security_group_id]
+  allowed_security_groups = [dependency.k3s.outputs.node_security_group_id]
 
   # Dev settings - smallest instance, no HA
   instance_class    = "db.t3.micro"

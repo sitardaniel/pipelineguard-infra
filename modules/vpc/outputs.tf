@@ -19,6 +19,6 @@ output "private_subnet_ids" {
 }
 
 output "nat_gateway_ip" {
-  description = "NAT Gateway public IP"
-  value       = aws_eip.nat.public_ip
+  description = "NAT Gateway public IP (null if create_nat_gateway is false)"
+  value       = try(aws_eip.nat[0].public_ip, null)
 }

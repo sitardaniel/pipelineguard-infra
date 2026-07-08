@@ -9,6 +9,7 @@ terraform {
 }
 
 inputs = {
-  vpc_cidr     = "10.0.0.0/16"
-  cluster_name = "pipelineguard-dev"
+  vpc_cidr           = "10.0.0.0/16"
+  cluster_name       = "pipelineguard-dev"
+  create_nat_gateway = false # k3s node lives in the public subnet; RDS never needs internet egress
 }

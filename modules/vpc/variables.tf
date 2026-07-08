@@ -16,6 +16,12 @@ variable "vpc_cidr" {
 }
 
 variable "cluster_name" {
-  description = "Name of the EKS cluster (for subnet tagging)"
+  description = "Name of the cluster (for subnet tagging)"
   type        = string
+}
+
+variable "create_nat_gateway" {
+  description = "Whether to create a NAT gateway for the private subnets. Skip it when nothing in the private subnets needs outbound internet access (e.g. a k3s node living in the public subnet, with RDS staying VPC-internal)."
+  type        = bool
+  default     = true
 }
