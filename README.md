@@ -89,6 +89,17 @@ This infrastructure is designed to cost **~$5–15 per demo session**, not per m
 - AWS CLI configured (`aws configure`)
 - AWS account with appropriate IAM permissions
 
+### AWS Account
+
+This repo's infra lives in the **PipelineGuard** account (a member account under the
+SDGOPS org), not the DevOpsLingo account. Terragrunt/Terraform use whatever AWS
+credentials are active in your shell, so set the profile before running any
+command in this repo:
+
+```bash
+export AWS_PROFILE=pipelineguard
+```
+
 ### Spin Up (Demo)
 
 ```bash
