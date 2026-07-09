@@ -100,6 +100,18 @@ command in this repo:
 export AWS_PROFILE=pipelineguard
 ```
 
+### RDS Password
+
+The `database_password` variable has no default on purpose - it's never committed to
+git. It's stored in AWS Secrets Manager under `pipelineguard/dev/rds/database-password`
+in the PipelineGuard account. Export it before planning/applying the `rds` unit:
+
+```bash
+export TF_VAR_database_password=$(aws secretsmanager get-secret-value \
+  --secret-id pipelineguard/dev/rds/database-password \
+  --profile pipelineguard --query SecretString --output text)
+```
+
 ### Spin Up (Demo)
 
 ```bash
