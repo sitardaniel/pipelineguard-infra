@@ -26,4 +26,8 @@ inputs = {
   vpc_cidr      = dependency.vpc.outputs.vpc_cidr
   subnet_id     = dependency.vpc.outputs.public_subnet_ids[0]
   instance_type = "t3.medium"
+
+  # Restrict the exposed NodePort (config-ui) to the deployer's own IP
+  # instead of the module's 0.0.0.0/0 default.
+  allowed_http_cidr = "176.229.31.250/32"
 }
