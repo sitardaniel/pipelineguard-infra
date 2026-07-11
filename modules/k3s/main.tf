@@ -60,6 +60,17 @@ resource "aws_security_group" "node" {
     }
   }
 
+  dynamic "ingress" {
+    for_each = var.public_nodeports
+    content {
+      description = "Public NodePort ${ingress.value} (e.g. ACME HTTP-01)"
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+
   egress {
     description = "Allow all outbound (image pulls, GitHub, SSM)"
     from_port   = 0

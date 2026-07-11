@@ -52,3 +52,9 @@ variable "nodeports" {
   type        = list(number)
   default     = [30090]
 }
+
+variable "public_nodeports" {
+  description = "NodePorts open to the whole internet, not scoped to allowed_http_cidr. Keep this list minimal - e.g. port 80 for ACME HTTP-01 challenges, which Let's Encrypt validates from unpredictable source IPs."
+  type        = list(number)
+  default     = []
+}
