@@ -1,6 +1,8 @@
-# 🛡️ PipelineGuard - Infrastructure
+# 🛡️ BaghGuard - Infrastructure
 
-> Terraform + Terragrunt configuration for PipelineGuard's AWS infrastructure. Spun up on-demand for demos, torn down immediately after to minimize cost.
+> Terraform + Terragrunt configuration for BaghGuard's AWS infrastructure. Spun up on-demand for demos, torn down immediately after to minimize cost.
+>
+> Note: internal resource names (S3 state bucket, RDS, EKS/k3s cluster, etc.) are intentionally still `pipelineguard-*` — renaming them means recreating live infrastructure, so that's a deliberate separate step, not part of this doc-only rename.
 
 [![IaC: Terraform](https://img.shields.io/badge/IaC-Terraform-7B42BC)](https://www.terraform.io/)
 [![Config: Terragrunt](https://img.shields.io/badge/config-Terragrunt-green)](https://terragrunt.gruntwork.io/)
@@ -11,7 +13,7 @@
 
 ## What This Repo Contains
 
-All AWS infrastructure for PipelineGuard, defined as code using Terraform modules and orchestrated with Terragrunt.
+All AWS infrastructure for BaghGuard, defined as code using Terraform modules and orchestrated with Terragrunt.
 
 | Repo | Purpose |
 |------|---------|
@@ -146,7 +148,7 @@ terraform init && terraform apply
 
 ## Security
 
-- All Terraform files are scanned by Checkov via PipelineGuard itself (dogfooding)
+- All Terraform files are scanned by Checkov via BaghGuard itself (dogfooding)
 - State files are encrypted at rest in S3
 - DynamoDB table prevents concurrent state modifications
 - IAM roles follow least-privilege principle

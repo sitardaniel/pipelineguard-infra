@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-PipelineGuard infrastructure is actively maintained on the `main` branch only.
+BaghGuard infrastructure is actively maintained on the `main` branch only.
 
 | Version | Supported |
 |---------|-----------|
@@ -34,7 +34,7 @@ Response timeline:
 - **No credentials in Git** - AWS credentials are never stored in this repo; use IAM roles or AWS CLI profiles
 - **Encrypted state** - Terraform state is encrypted at rest in S3 with server-side encryption
 - **State locking** - DynamoDB prevents concurrent modifications
-- **IaC scanning** - All Terraform files are scanned by Checkov (PipelineGuard scans itself)
+- **IaC scanning** - All Terraform files are scanned by Checkov (BaghGuard scans itself)
 - **Least privilege IAM** - All IAM roles follow minimum required permissions
 - **Private networking** - EKS nodes run in private subnets; no direct public exposure
 - **Branch protection** - `main` requires PR review; no direct pushes
