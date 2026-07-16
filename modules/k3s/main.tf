@@ -110,6 +110,19 @@ resource "aws_instance" "node" {
     systemctl enable --now docker
     usermod -aG docker ec2-user
 
+    # Proactively garbage-collect container images well before the default
+    # hard disk-pressure eviction threshold (~85%) - this is a single small
+    # (gp3) node, and a burst of image pulls across several Deployments in
+    # a short window can otherwise transiently trip DiskPressure, which
+    # taints the node NoSchedule for kubelet's ~5min hysteresis window even
+    # though real usage never got close to actually running out of space.
+    mkdir -p /etc/rancher/k3s
+    cat > /etc/rancher/k3s/config.yaml <<'K3S_CONFIG'
+    kubelet-arg:
+      - "image-gc-high-threshold=70"
+      - "image-gc-low-threshold=50"
+    K3S_CONFIG
+
     curl -sfL https://get.k3s.io | sh -
 
     until /usr/local/bin/k3s kubectl --kubeconfig=/etc/rancher/k3s/k3s.yaml get nodes 2>/dev/null; do
